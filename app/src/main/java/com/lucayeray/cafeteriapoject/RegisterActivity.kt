@@ -20,10 +20,11 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        registerViewModel = ViewModelProvider(this)
-            .get(RegisterViewModel::class.java)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
+
+        registerViewModel = ViewModelProvider(this)
+            .get(RegisterViewModel::class.java)
 
         binding.botoAcceptRegist.setOnClickListener {
 
