@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navegacio"
     app:startDestination="@id/homeFragment">
 
@@ -8,4 +9,24 @@
         android:id="@+id/homeFragment"
         android:name="com.lucayeray.cafeteriapoject.fragments.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/menjarsFragment"
+        android:name="com.lucayeray.cafeteriapoject.fragments.MenjarsFragment"
+        android:label="fragment_menjars"
+        tools:layout="@layout/fragment_menjars" />
+    <fragment
+        android:id="@+id/begudesFragment"
+        android:name="com.lucayeray.cafeteriapoject.fragments.BegudesFragment"
+        android:label="fragment_begudes"
+        tools:layout="@layout/fragment_begudes" />
+    <fragment
+        android:id="@+id/postresFragment"
+        android:name="com.lucayeray.cafeteriapoject.fragments.PostresFragment"
+        android:label="fragment_postres"
+        tools:layout="@layout/fragment_postres" />
+    <fragment
+        android:id="@+id/pagamentFragment"
+        android:name="com.lucayeray.cafeteriapoject.fragments.PagamentFragment"
+        android:label="fragment_pagament"
+        tools:layout="@layout/fragment_pagament" />
 </navigation>
