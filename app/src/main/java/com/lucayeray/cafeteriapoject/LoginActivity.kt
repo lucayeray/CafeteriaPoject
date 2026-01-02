@@ -15,7 +15,6 @@ import com.lucayeray.cafeteriapoject.viewmodel.LoginViewModel
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-
     private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,35 +25,34 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel = ViewModelProvider(this)
             .get(LoginViewModel::class.java)
 
-        binding.botoAcceptLogin.setOnClickListener {
+        // 🔹 OBSERVER (OBLIGATORIO)
+        loginViewModel.loginCorrecto.observe(this) { correcto ->
+            if (correcto) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Usuario o contraseña incorrectos",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
 
+        binding.botoAcceptLogin.setOnClickListener {
             val username = binding.labelUsuari.text.toString()
             val password = binding.labelContra.text.toString()
 
-            if (username.isBlank() || password.isBlank()) {
-                Toast.makeText(this, "Campos vacíos", Toast.LENGTH_SHORT).show()
+            if (username.isNotEmpty() && password.isNotEmpty()) {
+                loginViewModel.login(this, username, password)
+            } else {
+                Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
             }
-
-            loginViewModel.login(this, username, password)
-                .observe(this) { user ->
-
-                    if (user != null) {
-
-                        Toast.makeText(this, "Login correcto", Toast.LENGTH_SHORT).show()
-
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-
-                    } else {
-                        Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
-                    }
-                }
         }
 
+        // 🔹 BOTÓN REGISTER
         binding.botoRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 }
