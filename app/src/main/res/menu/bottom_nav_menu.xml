@@ -4,21 +4,21 @@
     <item
         android:id="@+id/menjarsFragment"
         android:title="Menjars"
-        android:icon="@android:drawable/ic_menu_agenda" />
+        android:icon="@drawable/icon_menjars" />
 
     <item
         android:id="@+id/begudesFragment"
         android:title="Begudes"
-        android:icon="@android:drawable/ic_menu_compass" />
+        android:icon="@drawable/icon_begudes" />
 
     <item
         android:id="@+id/postresFragment"
         android:title="Postres"
-        android:icon="@android:drawable/ic_menu_gallery" />
+        android:icon="@drawable/icon_postres" />
 
     <item
         android:id="@+id/pagamentFragment"
         android:title="Pagament"
-        android:icon="@android:drawable/ic_menu_send" />
+        android:icon="@drawable/icon_pagament" />
 
 </menu>
