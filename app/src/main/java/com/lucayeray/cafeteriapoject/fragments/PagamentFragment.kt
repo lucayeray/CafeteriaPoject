@@ -5,14 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lucayeray.cafeteriapoject.PagamentProvider
 import com.lucayeray.cafeteriapoject.adapter.ProducteAdapter
 import com.lucayeray.cafeteriapoject.databinding.FragmentPagamentBinding
+import com.lucayeray.cafeteriapoject.viewModel.SharedViewModel
+import kotlin.getValue
 
 class PagamentFragment : Fragment() {
 
     private lateinit var binding: FragmentPagamentBinding
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,19 +31,22 @@ class PagamentFragment : Fragment() {
         //RecyclerView
         binding.recyclerViewPagament.layoutManager =
             LinearLayoutManager(requireContext())
-        val productes = PagamentProvider.obtenirProductes()
-
-        val adapter = ProducteAdapter(productes)
-        binding.recyclerViewPagament.adapter = adapter
 
 
-        val total = PagamentProvider.calcularTotal()
-        binding.textTotal.text = "Total: %.2f €".format(total)
+        sharedViewModel.productesSeleccionats.observe(viewLifecycleOwner) { llistaProductes ->
+
+            val adapter = ProducteAdapter(llistaProductes) {
+            }
+
+            binding.recyclerViewPagament.adapter = adapter
+        }
+
+        sharedViewModel.total.observe(viewLifecycleOwner) { total ->
+            binding.textTotal.text = "Total: %.2f €".format(total)
+        }
 
         binding.btnPagar.setOnClickListener {
-            PagamentProvider.buidarCarret()
-            binding.recyclerViewPagament.adapter?.notifyDataSetChanged()
-            binding.textTotal.text = "Total: 0.00 €"
+            sharedViewModel.buidarCarret()
         }
 
         return binding.root
