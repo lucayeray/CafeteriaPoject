@@ -35,9 +35,7 @@ class PagamentFragment : Fragment() {
 
         sharedViewModel.productesSeleccionats.observe(viewLifecycleOwner) { llistaProductes ->
 
-            val adapter = ProducteAdapter(llistaProductes) {
-            }
-
+            val adapter = ProducteAdapter(llistaProductes) {}
             binding.recyclerViewPagament.adapter = adapter
         }
 

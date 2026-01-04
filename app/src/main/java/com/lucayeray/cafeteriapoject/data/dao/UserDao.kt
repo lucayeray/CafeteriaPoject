@@ -18,10 +18,7 @@ interface UserDao {
         AND password = :password
         LIMIT 1
     """)
-    fun login(
-        username: String,
-        password: String
-    ): LiveData<UserEntity?>
+    fun login(username: String, password: String): LiveData<UserEntity?>
 
 
     @Query("SELECT * FROM user_table WHERE username = :username")

@@ -4,17 +4,27 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.lucayeray.cafeteriapoject.data.dao.ProducteDao
 import com.lucayeray.cafeteriapoject.data.dao.UserDao
+import com.lucayeray.cafeteriapoject.data.model.ProducteEntity
 import com.lucayeray.cafeteriapoject.data.model.UserEntity
 
+import androidx.sqlite.db.SupportSQLiteDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+
 @Database(
-    entities = [UserEntity::class],
-    version = 1,
+    entities = [UserEntity::class, ProducteEntity::class],
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+
+    abstract fun producteDao(): ProducteDao
 
     companion object {
 
@@ -35,7 +45,41 @@ abstract class AppDatabase : RoomDatabase() {
                 context.applicationContext,
                 AppDatabase::class.java,
                 "cafeteria_database"
-            ).build()
+            )
+                .fallbackToDestructiveMigration()
+                .addCallback(roomCallback)
+                .build()
         }
+
+        private val roomCallback = object : RoomDatabase.Callback() {
+
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                super.onCreate(db)
+
+                // Se ejecuta SOLO la primera vez que se crea la BD
+                CoroutineScope(Dispatchers.IO).launch {
+
+                    val productesInicials = listOf(
+                        ProducteEntity("Hamburguesa", 8.50, "menjar"),
+                        ProducteEntity("Pizza", 9.00, "menjar"),
+                        ProducteEntity("Entrepà", 5.00, "menjar"),
+                        ProducteEntity("Sopa de la abuela", 100.00, "menjar"),
+
+                        ProducteEntity("Aigua", 1.50, "beguda"),
+                        ProducteEntity("Coca-Cola", 2.00, "beguda"),
+                        ProducteEntity("Mejunje Raro", 50.00, "beguda"),
+
+                        ProducteEntity("Gelat", 2.80, "postres"),
+                        ProducteEntity("Pastís", 3.50, "postres"),
+                        ProducteEntity("Coulant", 10.50, "postres")
+                    )
+
+                    INSTANCE?.producteDao()?.insertAll(productesInicials)
+                }
+            }
+        }
+
     }
+
+
 }

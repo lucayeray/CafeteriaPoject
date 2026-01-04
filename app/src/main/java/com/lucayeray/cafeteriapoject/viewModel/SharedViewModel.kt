@@ -3,23 +3,24 @@ package com.lucayeray.cafeteriapoject.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lucayeray.cafeteriapoject.model.Producte
+import com.lucayeray.cafeteriapoject.data.model.ProducteEntity
 
 class SharedViewModel : ViewModel() {
 
-    private val _productesSeleccionats = MutableLiveData<MutableList<Producte>>(mutableListOf())
+    private val _productesSeleccionats =
+        MutableLiveData<MutableList<ProducteEntity>>(mutableListOf())
 
     private val _total = MutableLiveData<Double>(0.0)
 
-    //Lista pública observable
-    val productesSeleccionats: LiveData<MutableList<Producte>> = _productesSeleccionats
+    // 🔹 Lista observable
+    val productesSeleccionats: LiveData<MutableList<ProducteEntity>> =
+        _productesSeleccionats
 
-    //Total público observable
+    // 🔹 Total observable
     val total: LiveData<Double> = _total
 
-    //Añadir producto al carrito
-
-    fun afegirProducte(producte: Producte) {
+    // 🔹 Añadir producto
+    fun afegirProducte(producte: ProducteEntity) {
         _productesSeleccionats.value?.add(producte)
         _productesSeleccionats.value = _productesSeleccionats.value
         calcularTotal()
@@ -34,7 +35,7 @@ class SharedViewModel : ViewModel() {
 
     // 🔹 Calcular total
     private fun calcularTotal() {
-        _total.value = _productesSeleccionats.value?.sumOf { it.preu } ?: 0.0
+        _total.value =
+            _productesSeleccionats.value?.sumOf { it.preu } ?: 0.0
     }
-
 }
