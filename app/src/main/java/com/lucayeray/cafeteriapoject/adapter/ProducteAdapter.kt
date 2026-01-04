@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.lucayeray.cafeteriapoject.PagamentProvider
 import com.lucayeray.cafeteriapoject.R
 import com.lucayeray.cafeteriapoject.model.Producte
 
@@ -30,6 +32,15 @@ class ProducteAdapter(
         val producte = llistaProductes[position]
         holder.nom.text = producte.nom
         holder.preu.text = "${producte.preu} €"
+
+        holder.itemView.setOnClickListener {
+            PagamentProvider.afegirProducte(producte)
+            Toast.makeText(
+                holder.itemView.context,
+                "Producto añadido: ${producte.nom}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     //Número de elementos
