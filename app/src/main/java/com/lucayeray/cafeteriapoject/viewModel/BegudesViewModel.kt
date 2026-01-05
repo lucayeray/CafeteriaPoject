@@ -10,7 +10,6 @@ import com.lucayeray.cafeteriapoject.data.model.ProducteEntity
 class BegudesViewModel : ViewModel() {
     private val _begudes = MutableLiveData<List<ProducteEntity>>()
 
-
     val begudes: LiveData<List<ProducteEntity>> = _begudes
 
 

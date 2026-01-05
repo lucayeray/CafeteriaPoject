@@ -11,5 +11,6 @@ class RegisterViewModel : ViewModel() {
 
         val user = UserEntity(username, password)
         UserRepository.insertUser(context, user)
+
     }
 }

@@ -17,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Total -->
     <TextView
         android:id="@+id/textTotal"
         android:layout_width="wrap_content"
@@ -30,7 +29,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Botón pagar -->
     <Button
         android:id="@+id/btnPagar"
         android:layout_width="0dp"

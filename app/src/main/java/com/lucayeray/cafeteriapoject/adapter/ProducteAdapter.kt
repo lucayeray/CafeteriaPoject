@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.lucayeray.cafeteriapoject.PagamentProvider
 import com.lucayeray.cafeteriapoject.R
 import com.lucayeray.cafeteriapoject.data.model.ProducteEntity
 import com.lucayeray.cafeteriapoject.model.Producte

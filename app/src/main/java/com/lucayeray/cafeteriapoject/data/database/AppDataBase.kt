@@ -10,14 +10,16 @@ import com.lucayeray.cafeteriapoject.data.model.ProducteEntity
 import com.lucayeray.cafeteriapoject.data.model.UserEntity
 
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.lucayeray.cafeteriapoject.data.dao.ComandaDao
+import com.lucayeray.cafeteriapoject.data.model.ComandaEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
 @Database(
-    entities = [UserEntity::class, ProducteEntity::class],
-    version = 2,
+    entities = [UserEntity::class, ProducteEntity::class, ComandaEntity::class],
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -25,6 +27,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 
     abstract fun producteDao(): ProducteDao
+
+    abstract fun comandaDao(): ComandaDao
 
     companion object {
 

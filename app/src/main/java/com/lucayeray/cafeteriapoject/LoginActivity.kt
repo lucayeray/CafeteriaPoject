@@ -25,9 +25,18 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel = ViewModelProvider(this)
             .get(LoginViewModel::class.java)
 
-        // 🔹 OBSERVER (OBLIGATORIO)
         loginViewModel.loginCorrecto.observe(this) { correcto ->
             if (correcto) {
+
+                val prefs = getSharedPreferences(
+                    "cafeteria_prefs",
+                    MODE_PRIVATE
+                )
+
+                prefs.edit()
+                    .putString("username", binding.labelUsuari.text.toString())
+                    .apply()
+
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {
@@ -50,7 +59,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // 🔹 BOTÓN REGISTER
         binding.botoRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }

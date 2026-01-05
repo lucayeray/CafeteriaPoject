@@ -27,14 +27,11 @@ class UserRepository {
             }
         }
 
-        fun loginUser(
-            context: Context,
-            username: String,
-            password: String
-        ): LiveData<UserEntity?> {
+        fun loginUser(context: Context, username: String, password: String): LiveData<UserEntity?> {
 
             val database = AppDatabase.getDatabase(context)
             return database.userDao().login(username, password)
+
         }
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lucayeray.cafeteriapoject.ProducteProvider
 import com.lucayeray.cafeteriapoject.ProducteRepository
 import com.lucayeray.cafeteriapoject.data.model.ProducteEntity
 import com.lucayeray.cafeteriapoject.model.Producte

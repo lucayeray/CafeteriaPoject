@@ -13,9 +13,11 @@ class LoginViewModel : ViewModel() {
     val loginCorrecto: LiveData<Boolean> = _loginCorrecto
 
     fun login(context: Context, username: String, password: String) {
+
         UserRepository.loginUser(context, username, password)
             .observeForever { user ->
                 _loginCorrecto.value = (user != null)
             }
+
     }
 }

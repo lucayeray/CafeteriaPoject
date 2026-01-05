@@ -12,12 +12,7 @@ interface UserDao {
     @Insert
     fun insertUser(user: UserEntity)
 
-    @Query("""
-        SELECT * FROM user_table
-        WHERE username = :username
-        AND password = :password
-        LIMIT 1
-    """)
+    @Query("""SELECT * FROM user_table WHERE username = :username AND password = :password LIMIT 1""")
     fun login(username: String, password: String): LiveData<UserEntity?>
 
 

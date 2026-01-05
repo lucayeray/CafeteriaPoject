@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.lucayeray.cafeteriapoject.ProducteProvider
 import com.lucayeray.cafeteriapoject.R
 import com.lucayeray.cafeteriapoject.adapter.ProducteAdapter
 import com.lucayeray.cafeteriapoject.databinding.FragmentMenjarsBinding
